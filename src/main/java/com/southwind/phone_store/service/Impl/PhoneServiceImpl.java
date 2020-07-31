@@ -26,9 +26,9 @@ public class PhoneServiceImpl implements PhoneService {
     private PhoneInfoRepository phoneInfoRepository;
 
     @Override
-    public DataVO findDataVO() {
+    public DataVO findDataVO() {//查询所有手机信息
         DataVO dataVO = new DataVO();
-        //类型
+        //类型VO
         List<PhoneCategory> phoneCategoryList = phoneCategoryRepository.findAll();
 
 //        常规写法
@@ -48,7 +48,7 @@ public class PhoneServiceImpl implements PhoneService {
         )).collect(Collectors.toList());
                 dataVO.setCategories(phoneCategoryVOList);
 
-        //手机
+        //手机VO
         List<PhoneInfo> phoneInfoList = phoneInfoRepository.findAllByCategoryType(phoneCategoryList.get(0).getCategoryType());
 
 //        常规写法
@@ -62,12 +62,43 @@ public class PhoneServiceImpl implements PhoneService {
 //        }
 
 //        stream写法
-        List<PhoneInfoVO> phoneInfoVOList = new ArrayList<>();
+
+        List<PhoneInfoVO> phoneInfoVOList = phoneInfoList.stream()
+                .map(e -> new PhoneInfoVO(
+                        e.getPhoneId(),
+                        e.getPhoneName(),
+                        e.getPhonePrice(),
+                        e.getPhoneDescription(),
+                        PhoneUntil.createTag(e.getPhoneTag()),
+                        e.getPhoneIcon()
+                )).collect(Collectors.toList());
+
+        dataVO.setPhones(phoneInfoVOList);
+        return dataVO;
+
+
+    }
+
+    @Override
+    public List<PhoneInfoVO> findPhoneInfoVOByCategoryType(Integer categoryType){
+
+        List<PhoneInfo> phoneInfoList = phoneInfoRepository.findAllByCategoryType(categoryType);
+
+        List<PhoneInfoVO> phoneInfoVOList = phoneInfoList.stream()
+                .map(e -> new PhoneInfoVO(
+                        e.getPhoneId(),
+                        e.getPhoneName(),
+                        e.getPhonePrice(),
+                        e.getPhoneDescription(),
+                        PhoneUntil.createTag(e.getPhoneTag()),
+                        e.getPhoneIcon()
+
+                )).collect(Collectors.toList());
+
+        return phoneInfoVOList;
 
 
 
-
-        return null;
     }
 
 

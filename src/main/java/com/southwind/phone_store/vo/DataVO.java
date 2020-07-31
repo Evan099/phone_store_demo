@@ -10,7 +10,7 @@ import java.util.List;
 public class DataVO {
 
     private List<PhoneCategoryVO> categories;
-    private List<PhoneCategoryVO> phones;
+    private List<PhoneInfoVO> phones;
 
 
 

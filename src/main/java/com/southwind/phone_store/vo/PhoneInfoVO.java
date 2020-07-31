@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-
+@AllArgsConstructor
 public class PhoneInfoVO {
 
     @JsonProperty("id")
