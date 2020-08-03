@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 03/08/2020 17:59:25
+ Date: 03/08/2020 22:16:38
 */
 
 SET NAMES utf8mb4;
@@ -84,14 +84,15 @@ CREATE TABLE `phone_category`  (
   `create_time` date NULL DEFAULT NULL,
   `update_time` date NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phone_category
 -- ----------------------------
 INSERT INTO `phone_category` VALUES (1, '红色', 1, '2020-07-01', '2020-07-03');
 INSERT INTO `phone_category` VALUES (2, '黑色', 2, '2020-07-10', '2020-07-19');
-INSERT INTO `phone_category` VALUES (3, '蓝色', 2, NULL, NULL);
+INSERT INTO `phone_category` VALUES (3, '蓝色', 3, '2020-08-03', '2020-08-03');
+INSERT INTO `phone_category` VALUES (4, '金色', 4, '2020-08-03', '2020-08-03');
 
 -- ----------------------------
 -- Table structure for phone_info
@@ -115,10 +116,10 @@ CREATE TABLE `phone_info`  (
 -- Records of phone_info
 -- ----------------------------
 INSERT INTO `phone_info` VALUES (1, '华为P10', 3000, NULL, 299, '../static', 1, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (2, '华为P11', 3100, NULL, 299, '../static', 1, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (3, '华为P12', 3100, '', 299, '../static', 2, '1080P', '2020-08-01', '2020-08-03');
-INSERT INTO `phone_info` VALUES (4, '华为Mate30', 4000, NULL, 299, NULL, 2, '1080POLED屏&200万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (8, '华为Mate40', 4500, NULL, 299, NULL, 2, '720P珍珠屏&2000万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (2, '华为P11', 3100, NULL, 299, '../static', 2, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (3, '华为P12', 3100, '', 299, '../static', 3, '1080P', '2020-08-01', '2020-08-03');
+INSERT INTO `phone_info` VALUES (4, '华为Mate30', 4000, NULL, 299, NULL, 4, '1080POLED屏&200万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (8, '华为Mate40', 4500, NULL, 299, NULL, 4, '720P珍珠屏&2000万像素&32G内存', '2020-07-30', NULL);
 
 -- ----------------------------
 -- Table structure for phone_specs

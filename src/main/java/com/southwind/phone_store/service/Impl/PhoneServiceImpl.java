@@ -35,7 +35,7 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     public DataVO findDataVO() {//查询所有手机信息
         DataVO dataVO = new DataVO();
-        //类型VO
+//类型VO
         List<PhoneCategory> phoneCategoryList = phoneCategoryRepository.findAll();
 
 //        常规写法
@@ -55,8 +55,8 @@ public class PhoneServiceImpl implements PhoneService {
         )).collect(Collectors.toList());
                 dataVO.setCategories(phoneCategoryVOList);
 
-        //手机VO
-        List<PhoneInfo> phoneInfoList = phoneInfoRepository.findAllByCategoryType(phoneCategoryList.get(0).getCategoryType());
+//手机VO
+        List<PhoneInfo> phoneInfoList = phoneInfoRepository.findAll();
 
 //        常规写法
 //        List<PhoneInfoVO> phoneInfoVOList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class PhoneServiceImpl implements PhoneService {
                         e.getPhoneId(),
                         e.getPhoneName(),
                         e.getPhonePrice(),
-                        e.getPhoneDescription()+".00",
+                        e.getPhoneDescription(),
                         PhoneUntil.createTag(e.getPhoneTag()),
                         e.getPhoneIcon()
                 )).collect(Collectors.toList());

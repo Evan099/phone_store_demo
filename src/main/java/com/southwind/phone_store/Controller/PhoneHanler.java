@@ -20,9 +20,15 @@ public class PhoneHanler {
 
 
     @GetMapping("/findByCategoryType/{categoryType}")
-    public ResultVO findByCategoryType(@PathVariable("categoryType") Integer categoryType){
-
+    public ResultVO findByCategoryType(@PathVariable("categoryType") Integer categoryType){//根据类型查询所有手机
         return ResultVOUtil.success(phoneService.findPhoneInfoVOByCategoryType(categoryType));
     }
+
+
+    @GetMapping("/findSpecsByPhoneId/{phoneId}")
+    public ResultVO findSpecsByPhoneId(@PathVariable("phoneId") Integer phoneId){
+        return ResultVOUtil.success(phoneService.findSpecsByPhoneId(phoneId));
+    }
+
 
 }
