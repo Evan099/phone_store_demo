@@ -2,19 +2,22 @@ package com.southwind.phone_store.service.Impl;
 
 import com.southwind.phone_store.entity.PhoneCategory;
 import com.southwind.phone_store.entity.PhoneInfo;
+import com.southwind.phone_store.entity.PhoneSpecs;
 import com.southwind.phone_store.repository.PhoneCategoryRepository;
 import com.southwind.phone_store.repository.PhoneInfoRepository;
+import com.southwind.phone_store.repository.PhoneSpecsRepository;
 import com.southwind.phone_store.service.PhoneService;
 import com.southwind.phone_store.until.PhoneUntil;
-import com.southwind.phone_store.vo.DataVO;
-import com.southwind.phone_store.vo.PhoneCategoryVO;
-import com.southwind.phone_store.vo.PhoneInfoVO;
+import com.southwind.phone_store.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,10 @@ public class PhoneServiceImpl implements PhoneService {
     private PhoneCategoryRepository phoneCategoryRepository;
     @Autowired
     private PhoneInfoRepository phoneInfoRepository;
+    @Autowired
+    private PhoneSpecsRepository phoneSpecsRepository;
+
+
 
     @Override
     public DataVO findDataVO() {//查询所有手机信息
@@ -68,7 +75,7 @@ public class PhoneServiceImpl implements PhoneService {
                         e.getPhoneId(),
                         e.getPhoneName(),
                         e.getPhonePrice(),
-                        e.getPhoneDescription(),
+                        e.getPhoneDescription()+".00",
                         PhoneUntil.createTag(e.getPhoneTag()),
                         e.getPhoneIcon()
                 )).collect(Collectors.toList());
@@ -80,7 +87,7 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public List<PhoneInfoVO> findPhoneInfoVOByCategoryType(Integer categoryType){
+    public List<PhoneInfoVO> findPhoneInfoVOByCategoryType(Integer categoryType){//通过规格类型查询所有手机信息
 
         List<PhoneInfo> phoneInfoList = phoneInfoRepository.findAllByCategoryType(categoryType);
 
@@ -97,9 +104,54 @@ public class PhoneServiceImpl implements PhoneService {
 
         return phoneInfoVOList;
 
-
-
     }
+
+    @Override
+    public SpecsPackageVO findSpecsByPhoneId(Integer phoneId) {//通过phoneId查询手机规格
+
+        PhoneInfo phoneInfo = phoneInfoRepository.findById(phoneId).get();
+
+        List<PhoneSpecs> phoneSpecsList = phoneSpecsRepository.findAllByPhoneId(phoneId);
+
+        //tree
+        List<PhoneSpecsVO> phoneSpecsVOList = new ArrayList<>();
+        List<PhoneSpecsCasVO> phoneSpecsCasVOList = new ArrayList<>();
+        PhoneSpecsVO phoneSpecsVO;
+        PhoneSpecsCasVO phoneSpecsCasVO;
+
+        for (PhoneSpecs phoneSpecs : phoneSpecsList) {
+            phoneSpecsVO = new PhoneSpecsVO();
+            phoneSpecsCasVO = new PhoneSpecsCasVO();
+            BeanUtils.copyProperties(phoneSpecs,phoneSpecsVO);
+            BeanUtils.copyProperties(phoneSpecs,phoneSpecsCasVO);
+            phoneSpecsVOList.add(phoneSpecsVO);
+            phoneSpecsCasVOList.add(phoneSpecsCasVO);
+        }
+
+        TreeVO treeVO = new TreeVO();
+        treeVO.setV(phoneSpecsVOList);
+        List<TreeVO> treeVOList = new ArrayList<>();
+        treeVOList.add(treeVO);
+
+        SkuVO skuVO = new SkuVO();
+        Integer price = phoneInfo.getPhonePrice().intValue();
+        skuVO.setPrice(price+".00");
+        skuVO.setStock_num(phoneInfo.getPhoneStock());
+        skuVO.setList(phoneSpecsCasVOList);
+
+        SpecsPackageVO specsPackageVO = new SpecsPackageVO();
+        specsPackageVO.setSku(skuVO);
+        Map<String,String> goods = new HashMap<>();
+        goods.put("picture",phoneInfo.getPhoneIcon());
+        specsPackageVO.setGoods(goods);
+
+
+        return specsPackageVO;
+    }
+
+
+
+
 
 
 

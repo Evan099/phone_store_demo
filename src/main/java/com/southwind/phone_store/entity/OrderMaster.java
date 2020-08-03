@@ -24,8 +24,8 @@ public class OrderMaster {
     private Integer specsId;
     private String specsName;
     private BigDecimal specePrice;
-    private String orderAmount;
-    private String payStatus;
+    private BigDecimal orderAmount;
+    private Integer payStatus;
     private Date createTime;
     private Date updateTime;
 
