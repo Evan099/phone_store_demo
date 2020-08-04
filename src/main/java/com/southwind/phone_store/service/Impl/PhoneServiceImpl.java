@@ -149,12 +149,10 @@ public class PhoneServiceImpl implements PhoneService {
         return specsPackageVO;
     }
 
-
-
-
-
-
-
+    @Override
+    public SpecsPackageVO subStock(Integer specsId, Integer quantity) {
+        return null;
+    }
 
 
 }

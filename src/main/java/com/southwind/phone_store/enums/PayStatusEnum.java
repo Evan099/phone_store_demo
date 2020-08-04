@@ -1,4 +1,4 @@
-package com.southwind.phone_store.Enums;
+package com.southwind.phone_store.enums;
 
 import lombok.Getter;
 

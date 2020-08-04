@@ -23,7 +23,7 @@ public class OrderMaster {
     private String phoneIcon;
     private Integer specsId;
     private String specsName;
-    private BigDecimal specePrice;
+    private String specsPrice;
     private BigDecimal orderAmount;
     private Integer payStatus;
     private Date createTime;

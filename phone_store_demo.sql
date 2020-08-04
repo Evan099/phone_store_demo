@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 03/08/2020 22:16:38
+ Date: 04/08/2020 18:01:04
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `buyer_address`  (
   `create_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of buyer_address
@@ -43,6 +43,8 @@ INSERT INTO `buyer_address` VALUES (6, '姚明', '13266669999', '北京市北京
 INSERT INTO `buyer_address` VALUES (7, '姚明2', '13266669999', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
 INSERT INTO `buyer_address` VALUES (8, '姚明3', '13266669999', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
 INSERT INTO `buyer_address` VALUES (9, '姚明9', '13266669998', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
+INSERT INTO `buyer_address` VALUES (10, '江疏影', '010-98989788', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
+INSERT INTO `buyer_address` VALUES (11, '江疏影被修改', '010-98989788', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for order_master
@@ -59,7 +61,7 @@ CREATE TABLE `order_master`  (
   `phone_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `specs_id` int(255) NOT NULL,
   `specs_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `spece_price` decimal(50, 0) NULL DEFAULT NULL,
+  `specs_price` decimal(50, 0) NULL DEFAULT NULL,
   `order_amount` decimal(50, 0) NULL DEFAULT NULL,
   `pay_status` int(255) NULL DEFAULT NULL,
   `create_time` date NULL DEFAULT NULL,
@@ -70,8 +72,11 @@ CREATE TABLE `order_master`  (
 -- ----------------------------
 -- Records of order_master
 -- ----------------------------
-INSERT INTO `order_master` VALUES ('1596446283804272358', '张三', '13788889999', '四川省', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', NULL, 280, 0, '2020-07-30', NULL);
-INSERT INTO `order_master` VALUES ('1596447844799515309', '张三', '13788889999', '四川省', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', NULL, 280, 0, '2020-07-30', NULL);
+INSERT INTO `order_master` VALUES ('1596446283804272358', '吴彦祖', '13788889999', '四川省', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', 2800, 280, 1, '2020-07-30', NULL);
+INSERT INTO `order_master` VALUES ('1596447844799515309', '张柏芝', '13788889999', '四川省', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', 2900, 280, 0, '2020-07-30', NULL);
+INSERT INTO `order_master` VALUES ('1596524017478668687', '张三', '13788889999', '四川省', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', 3000, 280, 0, '2020-07-30', NULL);
+INSERT INTO `order_master` VALUES ('1596532822458576339', '小周', '19888889999', '福建省厦门市大件路1903号', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', NULL, 280, 1, '2020-07-30', NULL);
+INSERT INTO `order_master` VALUES ('1596533151970687190', '小语', '19888889999', '天津市大件路1903号', 1, '华为P10', 1, '../static', 1, '华为P10_规格参数', NULL, 280, 0, '2020-07-30', NULL);
 
 -- ----------------------------
 -- Table structure for phone_category
