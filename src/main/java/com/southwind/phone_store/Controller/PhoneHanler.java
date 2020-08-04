@@ -21,14 +21,14 @@ public class PhoneHanler {
     }
 
     //根据类型查询所有手机
-    @GetMapping("/findByCategoryType/{categoryType}")
-    public ResultVO findByCategoryType(@PathVariable("categoryType") Integer categoryType){
+    @GetMapping("/findByCategoryType")
+    public ResultVO findByCategoryType(Integer categoryType){
         return ResultVOUtil.success(phoneService.findPhoneInfoVOByCategoryType(categoryType));
     }
 
     //根据phoneId查手机规格
-    @GetMapping("/findSpecsByPhoneId/{phoneId}")
-    public ResultVO findSpecsByPhoneId(@PathVariable("phoneId") Integer phoneId){
+    @GetMapping("/findSpecsByPhoneId")
+    public ResultVO findSpecsByPhoneId(Integer phoneId){
         return ResultVOUtil.success(phoneService.findSpecsByPhoneId(phoneId));
     }
 
