@@ -1,10 +1,12 @@
 package com.southwind.phone_store.vo;
 
+
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+
 public class TreeVO {
 
     private String k = "规格";

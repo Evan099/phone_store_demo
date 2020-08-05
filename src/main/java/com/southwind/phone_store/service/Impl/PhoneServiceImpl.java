@@ -3,12 +3,15 @@ package com.southwind.phone_store.service.Impl;
 import com.southwind.phone_store.entity.PhoneCategory;
 import com.southwind.phone_store.entity.PhoneInfo;
 import com.southwind.phone_store.entity.PhoneSpecs;
+import com.southwind.phone_store.enums.ResultEnum;
+import com.southwind.phone_store.exception.PhoneException;
 import com.southwind.phone_store.repository.PhoneCategoryRepository;
 import com.southwind.phone_store.repository.PhoneInfoRepository;
 import com.southwind.phone_store.repository.PhoneSpecsRepository;
 import com.southwind.phone_store.service.PhoneService;
 import com.southwind.phone_store.until.PhoneUntil;
 import com.southwind.phone_store.vo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PhoneServiceImpl implements PhoneService {
 
     @Autowired
@@ -122,8 +126,10 @@ public class PhoneServiceImpl implements PhoneService {
         for (PhoneSpecs phoneSpecs : phoneSpecsList) {
             phoneSpecsVO = new PhoneSpecsVO();
             phoneSpecsCasVO = new PhoneSpecsCasVO();
+
             BeanUtils.copyProperties(phoneSpecs,phoneSpecsVO);
             BeanUtils.copyProperties(phoneSpecs,phoneSpecsCasVO);
+
             phoneSpecsVOList.add(phoneSpecsVO);
             phoneSpecsCasVOList.add(phoneSpecsCasVO);
         }
@@ -137,6 +143,7 @@ public class PhoneServiceImpl implements PhoneService {
         Integer price = phoneInfo.getPhonePrice().intValue();
         skuVO.setPrice(price+".00");
         skuVO.setStock_num(phoneInfo.getPhoneStock());
+        skuVO.setTree(treeVOList);
         skuVO.setList(phoneSpecsCasVOList);
 
         SpecsPackageVO specsPackageVO = new SpecsPackageVO();
@@ -150,8 +157,29 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public SpecsPackageVO subStock(Integer specsId, Integer quantity) {
-        return null;
+    public void subStock(Integer specsId, Integer quantity) {//扣除库存
+
+        PhoneSpecs phoneSpecs = phoneSpecsRepository.findById(specsId).get();
+        PhoneInfo phoneInfo = phoneInfoRepository.findById(phoneSpecs.getPhoneId()).get();
+        Integer result = phoneSpecs.getSpecsStock()-quantity;
+        if(result < 0){
+            log.error("【扣库存】库存不足");
+            throw new PhoneException(ResultEnum.PHONE_STOCK_ERROR);
+        }
+
+        phoneSpecs.setSpecsStock(result);
+        phoneSpecsRepository.save(phoneSpecs);
+
+        result = phoneInfo.getPhoneStock() - quantity;
+
+        if(result < 0){
+            log.error("【扣库存】库存不足");
+            throw new PhoneException(ResultEnum.PHONE_STOCK_ERROR);
+        }
+
+        phoneInfo.setPhoneStock(result);
+        phoneInfoRepository.save(phoneInfo);
+
     }
 
 

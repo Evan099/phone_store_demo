@@ -37,4 +37,9 @@ class PhoneServiceImplTest {
         int id = 1;
     }
 
+    @Test
+    void subStock(){
+        phoneService.subStock(1,1);
+    }
+
 }

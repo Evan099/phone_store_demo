@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 04/08/2020 18:01:04
+ Date: 05/08/2020 18:05:44
 */
 
 SET NAMES utf8mb4;
@@ -30,21 +30,15 @@ CREATE TABLE `buyer_address`  (
   `create_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of buyer_address
 -- ----------------------------
-INSERT INTO `buyer_address` VALUES (1, '张三', '13678787878', '广东省深圳市福田区', '330100', '2020-08-03 00:00:00', '2020-08-03 00:00:00');
-INSERT INTO `buyer_address` VALUES (2, '小明', '13756565656', '浙江省杭州市沙湾区', '660323', '2020-08-03 00:00:00', '2020-08-03 00:00:00');
-INSERT INTO `buyer_address` VALUES (3, '小露', '18289898989', '四川省成都市高新区软件园A区3308', '610000', NULL, NULL);
 INSERT INTO `buyer_address` VALUES (5, '小露露', '18289898989', '四川省成都市高新区软件园A区3308', '610001', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (6, '姚明', '13266669999', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (7, '姚明2', '13266669999', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (8, '姚明3', '13266669999', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (9, '姚明9', '13266669998', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (10, '江疏影', '010-98989788', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
-INSERT INTO `buyer_address` VALUES (11, '江疏影被修改', '010-98989788', '北京市北京市朝阳区168号2203室', '10000', NULL, NULL);
+INSERT INTO `buyer_address` VALUES (13, '张三丰', '13289889898', '北京市北京市朝阳区簧门街213', '110105', NULL, NULL);
+INSERT INTO `buyer_address` VALUES (14, '李易峰', '18799998888', '天津市天津市和平区123123', '120101', NULL, NULL);
+INSERT INTO `buyer_address` VALUES (15, '杨幂', '18233336666', '上海市上海市虹口区和平饭店3206', '310109', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for order_master
@@ -120,11 +114,11 @@ CREATE TABLE `phone_info`  (
 -- ----------------------------
 -- Records of phone_info
 -- ----------------------------
-INSERT INTO `phone_info` VALUES (1, '华为P10', 3000, NULL, 299, '../static', 1, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (2, '华为P11', 3100, NULL, 299, '../static', 2, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (3, '华为P12', 3100, '', 299, '../static', 3, '1080P', '2020-08-01', '2020-08-03');
-INSERT INTO `phone_info` VALUES (4, '华为Mate30', 4000, NULL, 299, NULL, 4, '1080POLED屏&200万像素&32G内存', '2020-07-30', NULL);
-INSERT INTO `phone_info` VALUES (8, '华为Mate40', 4500, NULL, 299, NULL, 4, '720P珍珠屏&2000万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (1, '华为P10', 3000, NULL, 300, 'https://img.yzcdn.cn/vant/ipad.jpeg', 1, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (2, '华为P11', 3100, NULL, 0, 'https://img.yzcdn.cn/vant/ipad.jpeg', 2, '720P珍珠屏&1300万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (3, '华为P12', 3100, '', 0, 'https://img.yzcdn.cn/vant/ipad.jpeg', 3, '1080P', '2020-08-01', '2020-08-03');
+INSERT INTO `phone_info` VALUES (4, '华为Mate30', 4000, NULL, 0, 'https://img.yzcdn.cn/vant/ipad.jpeg', 4, '1080POLED屏&200万像素&32G内存', '2020-07-30', NULL);
+INSERT INTO `phone_info` VALUES (8, '华为Mate40', 4500, NULL, 0, 'https://img.yzcdn.cn/vant/ipad.jpeg', 4, '720P珍珠屏&2000万像素&32G内存', '2020-07-30', NULL);
 
 -- ----------------------------
 -- Table structure for phone_specs
@@ -141,11 +135,13 @@ CREATE TABLE `phone_specs`  (
   `create_time` date NULL DEFAULT NULL,
   `update_time` date NULL DEFAULT NULL,
   PRIMARY KEY (`specs_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phone_specs
 -- ----------------------------
-INSERT INTO `phone_specs` VALUES (1, 1, '华为P10_规格参数', '299', 28000, NULL, '30', '2020-08-02', '2020-08-03');
+INSERT INTO `phone_specs` VALUES (1, 1, '32GB', '130', 390000, 'https://img.yzcdn.cn/vant/ipad.jpeg', 'https://img.yzcdn.cn/vant/ipad.jpeg', '2020-08-02', '2020-08-03');
+INSERT INTO `phone_specs` VALUES (2, 1, '64GB', '170', 490000, 'https://img.yzcdn.cn/vant/ipad.jpeg', 'https://img.yzcdn.cn/vant/ipad.jpeg', '2020-08-05', '2020-08-05');
+INSERT INTO `phone_specs` VALUES (3, 2, '128GB', '100', 520000, 'https://img.yzcdn.cn/vant/ipad.jpeg', 'https://img.yzcdn.cn/vant/ipad.jpeg', '2020-08-05', '2020-08-05');
 
 SET FOREIGN_KEY_CHECKS = 1;

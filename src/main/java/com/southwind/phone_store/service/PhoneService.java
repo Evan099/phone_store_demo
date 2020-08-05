@@ -13,7 +13,7 @@ public interface PhoneService {
 
     public SpecsPackageVO findSpecsByPhoneId(Integer phoneId);
 
-    public SpecsPackageVO subStock(Integer specsId,Integer quantity);
+    public void subStock(Integer specsId,Integer quantity);
 
 
 
