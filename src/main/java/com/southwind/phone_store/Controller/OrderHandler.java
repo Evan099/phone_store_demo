@@ -54,13 +54,13 @@ public class OrderHandler {
     }
 
 
-    @GetMapping("/detail/{orderId}")
-    public ResultVO findOrderDetailVOByOrderId(@PathVariable("orderId") String orderId){
+    @GetMapping("/detail")
+    public ResultVO findOrderDetailVOByOrderId(String orderId){
         return ResultVOUtil.success(orderService.findOrderDetailVOByOrderId(orderId));
     }
 
-    @PutMapping("/pay/{orderId}")
-    public ResultVO pay(@PathVariable("orderId") String orderId){
+    @PutMapping("/pay")
+    public ResultVO pay(String orderId){
         Map<String,String> map = new HashMap<>();
         map.put("order",orderService.pay(orderId));
         return ResultVOUtil.success(map);
