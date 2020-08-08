@@ -1,4 +1,4 @@
-package com.southwind.phone_store.Controller;
+package com.southwind.phone_store.controller;
 
 import com.southwind.phone_store.dto.OrderDTO;
 import com.southwind.phone_store.exception.PhoneException;
@@ -7,6 +7,8 @@ import com.southwind.phone_store.service.OrderService;
 import com.southwind.phone_store.service.PhoneService;
 import com.southwind.phone_store.until.ResultVOUtil;
 import com.southwind.phone_store.vo.ResultVO;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ public class OrderHandler {
     @Autowired
     private PhoneService phoneService;
 
+    @ApiOperation("创建一个订单")
     @PostMapping("/create")
     public ResultVO create(@Valid @RequestBody OrderForm orderForm, BindingResult bindingResult){
 
@@ -53,14 +56,15 @@ public class OrderHandler {
 
     }
 
-
+    @ApiOperation("获取订单详情")
     @GetMapping("/detail")
-    public ResultVO findOrderDetailVOByOrderId(String orderId){
+    public ResultVO findOrderDetailVOByOrderId(@ApiParam("订单orderId") String orderId){
         return ResultVOUtil.success(orderService.findOrderDetailVOByOrderId(orderId));
     }
 
+    @ApiOperation("支付")
     @PutMapping("/pay")
-    public ResultVO pay(String orderId){
+    public ResultVO pay(@ApiParam("订单orderId") String orderId){
         Map<String,String> map = new HashMap<>();
         map.put("order",orderService.pay(orderId));
         return ResultVOUtil.success(map);

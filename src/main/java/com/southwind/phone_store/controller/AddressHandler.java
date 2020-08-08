@@ -1,10 +1,11 @@
-package com.southwind.phone_store.Controller;
+package com.southwind.phone_store.controller;
 
 import com.southwind.phone_store.exception.PhoneException;
 import com.southwind.phone_store.form.AddressForm;
 import com.southwind.phone_store.service.AddressService;
 import com.southwind.phone_store.until.ResultVOUtil;
 import com.southwind.phone_store.vo.ResultVO;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,14 @@ public class AddressHandler {
     @Autowired
     private AddressService addressService;
 
-
+    @ApiOperation("获取所有地址")
     @GetMapping("/list")
     public ResultVO list(){
         return ResultVOUtil.success(addressService.findAll());
     }
 
+
+    @ApiOperation("创建一个地址")
     @PostMapping("/create")
     public ResultVO create(@Valid @RequestBody AddressForm addressForm , BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -38,6 +41,7 @@ public class AddressHandler {
         return ResultVOUtil.success(null);
     }
 
+    @ApiOperation("修改一个地址")
     @PutMapping("/update")
     public ResultVO update(@Valid @RequestBody AddressForm addressForm , BindingResult bindingResult){
         if(bindingResult.hasErrors()){
