@@ -5,6 +5,7 @@ import com.southwind.phone_store.form.AddressForm;
 import com.southwind.phone_store.service.AddressService;
 import com.southwind.phone_store.until.ResultVOUtil;
 import com.southwind.phone_store.vo.ResultVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/address")
 @Slf4j
+@Api(tags = "地址模块")
 public class AddressHandler {
 
     @Autowired

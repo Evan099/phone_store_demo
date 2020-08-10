@@ -3,12 +3,14 @@ package com.southwind.phone_store.controller;
 import com.southwind.phone_store.service.PhoneService;
 import com.southwind.phone_store.until.ResultVOUtil;
 import com.southwind.phone_store.vo.ResultVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/phone")
+@Api(tags = "手机模块")
 public class PhoneHanler {
 
     @Autowired

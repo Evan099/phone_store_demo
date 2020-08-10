@@ -7,6 +7,7 @@ import com.southwind.phone_store.service.OrderService;
 import com.southwind.phone_store.service.PhoneService;
 import com.southwind.phone_store.until.ResultVOUtil;
 import com.southwind.phone_store.vo.ResultVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/order")
 @Slf4j
+@Api(tags = "订单模块")
 public class OrderHandler {
     @Autowired
     private OrderService orderService;
